@@ -1,0 +1,63 @@
+ 
+<!-- <div *ngIf="showmsg"> -->
+    <h4>{{ msg }}</h4>
+ <!-- </div> -->
+ <div class="registration-container">
+    <div class="registration-header">
+        Students Info
+    </div>
+
+
+ 
+
+    <div class="registration-form">
+        <input type="text" class="form-input" [(ngModel)]="name" placeholder="Name" required="">
+        <input type="text" class="form-input" [(ngModel)]="class" placeholder="Class" >
+        <input type="text" class="form-input" [(ngModel)]="phone" placeholder="Phone">
+        <input type="submit" class="btn btn-primary" value="Add" (click)="add()">
+    </div>
+
+
+ 
+
+    <div class="search-container">
+        <input type="text" class="form-input" [(ngModel)]="searchkey" (click)="searchbarActive = true"
+            placeholder="Search" (input)="search()" >
+        <div class="registration-searchbar" [class.active]="searchbarActive" *ngFor="let item of items">
+
+
+
+        </div>
+    </div>
+
+    <div class="registration-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items" >
+                    <td *ngIf="!item.edit">{{ item.name }}</td>
+                    <td *ngIf="!item.edit">{{ item.class }}</td>
+                    <td *ngIf="!item.edit">{{ item.phone }}</td>
+                    <td *ngIf="item.edit"><input type="text" [(ngModel)]="editname"></td>
+                    <td *ngIf="item.edit"><input type="text" [(ngModel)]="editclass" ></td>
+                    <td *ngIf="item.edit"><input type="text" [(ngModel)]="editphone"></td>
+                    <button class="btn-danger" style="position:relative;right:30px;"
+                        (click)="del(item.id)">
+                        <mat-icon class="mat-icon-lg">delete</mat-icon>
+</button>
+                    <button class="btn-secondary" (click)="editbar(item)"><mat-icon class="mat-icon-lg">edit</mat-icon></button>
+                                        <div *ngIf="item.edit"><input type="submit" class="btn btn-primary" value="Update" (click)="update(item.id,item)"></div>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
